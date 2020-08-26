@@ -1,3 +1,9 @@
+/* function sayHello(){
+    return 'hello world'
+}
+ */
+
+
 class Article {
     constructor(title, description, category) {
         this.title = title;
@@ -39,32 +45,8 @@ class Category {
     }
 }
 
-document.querySelector('#submitBtn').addEventListener('click', (e) => {
-    e.preventDefault();
 
-    const title = document.querySelector('#titleInp').value
-    const category = document.querySelector('#categorySelect option:checked').value
-    const description = document.querySelector('#descriptionTxt').value
-    let categoryObj;
-    switch (category) {
-        case 'news':
-            categoryObj = Category.News()
-            break;
-        case 'sport':
-            categoryObj = Category.Sport()
-            break;
-        case 'politics':
-            categoryObj = Category.Politics()
-            break;
-        case 'beauty':
-            categoryObj = Category.Beauty()
-            break;
-        default:
-            categoryObj = new Category ('no category')
-            break;
-    }
 
-    const container = document.querySelector('#container')
-    const article = new Article(title , description , categoryObj)
-    article.render(container)
-})
+export {Article , Category}
+
+//export {sayHello}
