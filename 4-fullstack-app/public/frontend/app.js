@@ -59,6 +59,7 @@ document.querySelector('#submitBtn').addEventListener('click', (e) => {
                 const container = document.querySelector('#container')
                 const article = new Article(title, description, categoryObj)
                 article.render(container)
+    
             }
 
         }).catch(err => {
@@ -76,15 +77,15 @@ document.querySelector('#submitBtn').addEventListener('click', (e) => {
 })
 
 
-async function postData(url = "", data = {}) {
-    const response = await fetch(url, {
+ function postData(url = "", data = {}) {
+  const response=  fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
     });
-    return response.json();
+    return response 
 }
 
 //console.log(sayHello());
