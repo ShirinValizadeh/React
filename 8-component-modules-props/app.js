@@ -3,12 +3,12 @@ import ReactDOM from "react-dom"
 import Comment from "./components/Comment"
 import ApprovalCard from "./components/ApprovalCard"
 
-const App = (props) => {
-  console.log(props);
+const App = () => {
+
   return (
     <div className="ui container comments " >
       <ApprovalCard>
-       {props.children}
+        Hi I am card
         </ApprovalCard>
 
         <ApprovalCard> 

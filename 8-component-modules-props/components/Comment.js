@@ -2,12 +2,12 @@ import React from "react";
 import Faker from "faker";
 
 const Comment = (props) => {
-
+console.log(props);
   const rate = parseInt(props.rate);
   const stars = [];
 
-  for (let i = 0; i < rate.length; i++) {
-    stars.push(<i key={i}  className={"star icon" + props.starColor}></i>)
+  for (let i = 0; i < rate ; i++) {
+    stars.push(<i key={i}  className={"star icon " + props.starColor}></i>)
   }
   return (
     <div className="comment">
