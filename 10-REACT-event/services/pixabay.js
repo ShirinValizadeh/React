@@ -1,10 +1,11 @@
 // API   12000491-41fc68d8c365df909e022ceb6
 
-const getImages = (keyWord , color) => {
+const getImages = (keyWord , color , pageNumber) => {
     return new Promise((resolve, reject) => {
 
         const url = 'https://pixabay.com/api?key=12000491-41fc68d8c365df909e022ceb6' +
-            '&q=' + keyWord + "&per_page=200" + "&colors=" + color
+            '&q=' + keyWord + "&per_page=200" + (color? '&colors=' + color: '') +  (pageNumber? '&page=' + pageNumber: '')
+       
 
         fetch(url, {
             method: 'GET'

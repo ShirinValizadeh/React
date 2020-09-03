@@ -23,9 +23,10 @@ class SearchBar extends React.Component{
          //! arrow function will refer this.state line 12 to class not to onInputChange()
       //  console.log(this.state.keyWord);
       //* send data from child to father  app.js line 10
-        this.props.runSearch(this.state.keyWord , this.state.color)  //! send value to parent 1.2
-
-
+      if (this.state.keyWord) {
+           this.props.runSearch(this.state.keyWord , this.state.color , 1)  //! send value to parent 1.2
+      }
+       
     }
 
 
@@ -47,7 +48,9 @@ class SearchBar extends React.Component{
                     <option value="pink">pink</option>
 
                 </select>
+              
                 </div>
+                <button className="ui green basic button">Search</button>
                 </form>
              </div>
         )
