@@ -17,13 +17,13 @@ class SearchBar extends React.Component {
 
     //runSearch() come from app.js take one promiter
     onSearchBtnClick = () => { //!1.4
-        this.props.runSearch(this.state.searchWord, this.state.color) //!1.5
+        this.props.runSearch(this.state.searchWord , this.state.color) //!1.5   //6.1
     }
 
 
-    //color
-    colorSelectChange =(e)=>{ 
-        console.log(e.target.value);
+    //color 
+    colorSelectChange =(e)=>{   //!6
+        //console.log(e.target.value);
         this.setState({color:e.target.value  }) 
     }
     

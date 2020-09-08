@@ -1,13 +1,8 @@
-
-//* first step build URL
-const getData = (searchWord , perPage , pageNum , color)=>{  //!1
-    const url = 'https://pixabay.com/api/?' +
-     'key=' + '12000491-41fc68d8c365df909e022ceb6' +
-     '&q=' + searchWord +
-     '&per_page=' + perPage + 
-     '&page=' + pageNum +
-      '&colors=' + color 
-
+//* first step build URL  1
+const getData = (keyWord)=>{  //!1
+    console.log('wikipedia keyword', keyWord);
+    const url = 'https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=' 
+    + keyWord
      // fetch  by defaut is GET
      return new Promise((resolve , reject)=>{
          fetch(url).then(response=>{
