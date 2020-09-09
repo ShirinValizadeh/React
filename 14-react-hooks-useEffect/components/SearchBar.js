@@ -1,7 +1,14 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect , useRef} from "react"
 import getData from "../services/wikipedia"
 
 const SearchBar = () => {
+
+  //4  useRef()
+  const btnRef = useRef()
+  useEffect(() => {
+    console.log(btnRef.current);
+  }, [])
+
 
   const [searchWord,  setSearchWord] = useState('') //1.5  WARNING "value" cann not be null
   const [articles, setArticles] = useState([])  //2
@@ -25,7 +32,7 @@ const SearchBar = () => {
   useEffect(() => {
     // !i am gonna be call for the first time and wenn "searchWord in the state is // change"
     // use set time out to wait for next charachter than send request
-  const timmer = setTimeout(() => {
+  const timmer = setTimeout(() => {  //3
          if (searchWord) {
       //call what is inside wikipedia 1.6
       getData(searchWord).then(data => {
@@ -41,13 +48,11 @@ const SearchBar = () => {
 
    //!clean up function
    //clean up func wich gonna be invoked direktly before call same useEffect func for the second charachter
-   return ()=>{
+   return ()=>{  //3.1
      console.log('clean up func wich gonna be invoked direktly before call same useEffect func for the second charachter');
     clearTimeout(timmer)
     }
   }, [searchWord])
-
-
 
 
 
@@ -61,8 +66,10 @@ const SearchBar = () => {
           Featured
         </div>
         <div className="card-body">
-          
-      <p className="card-text">{article.snippet}</p>
+          {/* convert to text  dangerouslySetInnerHTML={{__html: ?article.snippet }} */}
+      <p className="card-text" dangerouslySetInnerHTML={{__html:article.snippet}} >
+      
+      </p>
           <a href={`https://en.wikipedia.org?curid=${article.pageid}`} target="_blank" className="btn btn-primary">Open in Wikipedia</a>
         </div>
       </div>
@@ -77,7 +84,8 @@ const SearchBar = () => {
     <div className="row">
       <div className="input-group mb-3">
         <div className="input-group-prepend">
-          <button className="btn btn-outline-secondary" type="button">Search</button>
+          {/* 4.2 */}
+          <button ref={btnRef} className="btn btn-outline-secondary" type="button">Search</button>
         </div>
         <input type="text" className="form-control" placeholder="Search here" //1.3
           onChange={(e) => {
