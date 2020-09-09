@@ -4,15 +4,13 @@ import getData from "../services/wikipedia"
 const SearchBar = () => {
 
   const [searchWord,  setSearchWord] = useState('') //1.5  WARNING "value" cann not be null
-    const [articles, setArticles] = useState([])  //2
+  const [articles, setArticles] = useState([])  //2
        
 
 
   const onSearchInpChange = (e) => { //1.4
     // console.log(e.target.value);
-
     setSearchWord(e.target.value) //1.5.1
-
   }
 
   //***************hook useEffect()************** */
@@ -25,9 +23,10 @@ const SearchBar = () => {
     }, []) */
 
   useEffect(() => {
-    // !i am gonna be call for the first time and wenn "searchWord in the state is
-    // change"
-    if (searchWord) {
+    // !i am gonna be call for the first time and wenn "searchWord in the state is // change"
+    // use set time out to wait for next charachter than send request
+  const timmer = setTimeout(() => {
+         if (searchWord) {
       //call what is inside wikipedia 1.6
       getData(searchWord).then(data => {
         console.log(data);
@@ -38,10 +37,23 @@ const SearchBar = () => {
         console.log(err);
       })
     }
+   }, 1000);
 
+   //!clean up function
+   //clean up func wich gonna be invoked direktly before call same useEffect func for the second charachter
+   return ()=>{
+     console.log('clean up func wich gonna be invoked direktly before call same useEffect func for the second charachter');
+    clearTimeout(timmer)
+    }
   }, [searchWord])
 
 
+
+
+
+
+
+// will be reapeted
   const articlesElements = articles.map(article =>{
       return (
         <div key={article.pageid} className="card">
