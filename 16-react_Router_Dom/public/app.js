@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import Navbar from "./components/Navbar"
 
 const PageOne = () => {
     return (
@@ -37,16 +38,20 @@ const PageThree = () => {
 class App extends React.Component {
     render() {
         return (
-            <div>
+        
+               
                 <BrowserRouter>
+                <Navbar/>
                     <div>
+                        
                         <Route path="/" exact component={PageOne} />
                         <Route path="/pagetwo" exact component={PageTwo} />
                         <Route path="/pagetwo/pagethree" component={PageThree} />
 
                     </div>
                 </BrowserRouter>
-            </div>
+         
+         
         )
     }
 }
